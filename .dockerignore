@@ -1,0 +1,11 @@
+# Ignore everything
+**
+
+# Allow docker folder
+!/docker/**
+
+# Allow any-analysis source
+!/LICENSE
+!/setup.py
+!/demos_segmentation
+!/models
