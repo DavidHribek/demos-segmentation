@@ -1,0 +1,7 @@
+# IDE
+**/*vscode
+
+# Dynamically created
+**/version.py
+**/*egg-info
+**/*.pyc
