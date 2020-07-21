@@ -5,6 +5,7 @@ FROM python:3.8-slim-buster as dev
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y \
 	git \
+	libglib2.0-0 \
 	wget \
 	sudo \
 	gosu \
