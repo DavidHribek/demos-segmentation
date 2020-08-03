@@ -1,0 +1,40 @@
+// See https://aka.ms/vscode-remote/containers for the
+// documentation about the devcontainer.json format
+{
+	"name": "demos-segmentation-service",
+	"initializeCommand": ["bash", "${localWorkspaceFolder}/docker/build.bash"],
+	"image": "demos-segmentation-dev:1.0",
+	// Local Development
+	// "workspaceMount": "src=/home/psvoboda/projects/demos-segmentation-service,dst=/app,type=bind,consistency=cached",
+	"workspaceMount": "src=/path/to/demos-segmentation-service,dst=/app,type=bind,consistency=cached",
+	"runArgs": [
+		"-v","${env:SSH_AUTH_SOCK}:/ssh-agent",
+		"-v","${env:HOME}/.ssh/known_hosts:/home/developer/.ssh/known_hosts",
+		"-e","SSH_AUTH_SOCK=/ssh-agent",
+		"-e", "LOGIN=developer",
+		// Change USER_UID to your $(id -u)
+		"-e", "USER_UID=1000",
+		// "--gpus","all",
+		// "--cap-add","SYS_PTRACE",
+		// See https://docs.nvidia.com/deeplearning/frameworks/user-guide/index.html#setincshmem
+		// "--shm-size=1g"
+	],
+
+	"remoteUser": "developer",
+	"overrideCommand": false,
+	"updateRemoteUserUID": false,
+	"postCreateCommand": "sudo apt-get update && sudo apt-get install -y bash-completion vim && sudo chown $(id -u) /opt -R",
+
+	"workspaceFolder": "/app",
+	"extensions": [
+		"ms-python.python",
+		"ms-python.vscode-pylance",
+		"streetsidesoftware.code-spell-checker",
+		"eamodio.gitlens",
+		"njpwerner.autodocstring",
+		"gruntfuggly.todo-tree",
+		"mhutchie.git-graph",
+		"christian-kohler.path-intellisense",
+		"humao.rest-client"
+	],
+}
